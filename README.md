@@ -1,8 +1,6 @@
-# Imbalance-Aware Distributional Alignment of Heterogeneous Modalities for HER2 Status Prediction
+# IADA
 
-Official implementation of the MICCAI 2026 paper **Imbalance-Aware
-Distributional Alignment of Heterogeneous Modalities for HER2 Status
-Prediction**.
+**Imbalance-Aware Distributional Alignment of Heterogeneous Modalities for HER2 Status Prediction**, MICCAI 2026 
 
 
 ![IADA overview](imgs/overview.png)
