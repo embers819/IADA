@@ -1,35 +1,13 @@
-# IADA
+# Imbalance-Aware Distributional Alignment of Heterogeneous Modalities for HER2 Status Prediction
 
 Official implementation of the MICCAI 2026 paper **Imbalance-Aware
 Distributional Alignment of Heterogeneous Modalities for HER2 Status
 Prediction**.
 
-IADA fuses whole-slide image (WSI) and magnetic resonance imaging (MRI) with
-distributional cross-modality alignment and dynamic gradient modulation.
 
 ![IADA overview](imgs/overview.png)
 
-## News
 
-- Initial release for the MICCAI 2026 IADA paper, including the model,
-  HER2 training/evaluation scripts, and an anonymized four-case smoke-test
-  example.
-
-## Method Components
-
-- WSI encoder: RRT-MIL.
-- MRI encoder: 3D DenseNet121.
-- Distributional representation: modality-specific Gaussian mean and standard
-  deviation heads.
-- Distributional alignment: symmetric KL divergence plus standard normal KL
-  regularization.
-- Classification: sigmoid feature gates on modality means, concatenation, and
-  focal-loss supervision.
-- Modality rebalancing: Dynamic Gradient Modulation (DGM) from unimodal
-  prediction scores.
-
-The release intentionally excludes comparison methods, historical experiment
-scripts, logs, and checkpoints.
 
 ## Pre-Requisites
 
@@ -105,33 +83,6 @@ python train_iada.py --config configs/her2_iada.yaml
 
 Replace all placeholder paths in the config before running full experiments.
 
-## Real-Feature Smoke Test
-
-The repository includes four anonymized real derived examples under
-`examples/real_data/` for checking the data loader and training loop only.
-Metrics from this subset are not meaningful.
-
-```bash
-python train_iada.py --config configs/example_real_4cases.yaml
-```
-
-Confirm data-release permission before uploading the real derived example files
-to a public repository. If permission is unavailable, remove
-`examples/real_data/` and keep the config format.
-
-## Paper Defaults
-
-- Optimizer: Adam.
-- Learning rate: `1e-4`.
-- Batch size: `2`.
-- Epochs: `100`.
-- Classification loss: Focal loss.
-- `alpha = 0.2` for `(1 - alpha) * L_cls + alpha * L_dist`.
-- `beta = 0.1` for DGM.
-- `lambda_reg = 2e-2` for standard normal KL regularization.
-- Gradient clipping is disabled by default.
-
-Checkpoints, metrics, predictions, and logs are written below `--output_dir`.
 
 ## Citation
 
@@ -146,8 +97,3 @@ If you find this repository useful, please cite:
 }
 ```
 
-## Acknowledgements
-
-This release follows the lightweight public-repository style of open-source
-multimodal pathology projects such as MOTCat and uses RRT-MIL as the WSI
-encoder.
