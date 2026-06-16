@@ -1,9 +1,9 @@
 mode: internal_5fold
-internal_csv: /home/hxm/label/HER2/HER2_internal.csv
-external_csv: /home/hxm/label/HER2/zssy_her2_label.csv
-wsi_root: /home/hxm/data/HER2/WSI/512_R50_HER2_all/
-mri_root: /home/hxm/data/HER2/MRI/preprocess/MRI_64_padding_all_h5/
-output_dir: /home/hxm/model/IADA_released/runs/her2_iada
+internal_csv: <LABEL_DIR>/HER2_internal.csv
+external_csv: <LABEL_DIR>/HER2_external.csv
+wsi_root: <DATA_ROOT_DIR>/wsi_features
+mri_root: <DATA_ROOT_DIR>/mri_volumes
+output_dir: <OUTPUT_DIR>/her2_iada
 
 n_classes: 2
 folds: 5

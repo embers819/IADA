@@ -28,11 +28,11 @@ def build_parser():
     parser.add_argument("--config", default=None, help="Optional YAML config file.")
     parser.add_argument("--mode", default="internal_5fold", choices=["internal_5fold", "external"])
 
-    parser.add_argument("--internal_csv", default="/home/hxm/label/HER2/HER2_internal.csv")
-    parser.add_argument("--external_csv", default="/home/hxm/label/HER2/zssy_her2_label.csv")
-    parser.add_argument("--wsi_root", default="/home/hxm/data/HER2/WSI/512_R50_HER2_all/")
-    parser.add_argument("--mri_root", default="/home/hxm/data/HER2/MRI/preprocess/MRI_64_padding_all_h5/")
-    parser.add_argument("--output_dir", default="/home/hxm/model/IADA_released/runs/her2_iada")
+    parser.add_argument("--internal_csv", default=None)
+    parser.add_argument("--external_csv", default=None)
+    parser.add_argument("--wsi_root", default=None)
+    parser.add_argument("--mri_root", default=None)
+    parser.add_argument("--output_dir", default="runs/iada")
     parser.add_argument("--csv_has_header", action="store_true")
     parser.add_argument("--mri_col", default="0")
     parser.add_argument("--wsi_col", default="1")
@@ -332,6 +332,12 @@ def run_external(internal_table, external_table, args):
 def main():
     args = parse_args()
     seed_everything(args.seed)
+    required = ["internal_csv", "wsi_root", "mri_root"]
+    if args.mode == "external":
+        required.append("external_csv")
+    missing = [name for name in required if getattr(args, name) in (None, "")]
+    if missing:
+        raise ValueError(f"Missing required argument(s): {', '.join(missing)}")
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     write_json(Path(args.output_dir) / "config.json", vars(args))
 
