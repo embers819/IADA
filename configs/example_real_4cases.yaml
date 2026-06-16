@@ -1,0 +1,27 @@
+mode: external
+internal_csv: examples/real_data/labels.csv
+external_csv: examples/real_data/labels.csv
+wsi_root: examples/real_data/wsi
+mri_root: examples/real_data/mri
+output_dir: runs/example_real_4cases
+
+n_classes: 2
+epochs: 1
+batch_size: 1
+num_workers: 0
+lr: 1.0e-4
+seed: 2021
+
+wsi_input_dim: 1024
+wsi_embed_dim: 512
+hidden_dim: 256
+latent_dim: 256
+dropout: 0.25
+
+alpha: 0.2
+beta: 0.1
+lambda_reg: 2.0e-2
+focal_gamma: 1.0
+focal_alpha: 0.25
+use_dgm: true
+grad_clip: 0.0
