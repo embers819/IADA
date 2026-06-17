@@ -27,11 +27,11 @@ Recommended directory structure:
 
 ```text
 DATA_ROOT_DIR/
-  wsi_features/
+  wsi_data/
     slide_001.pt
     slide_002.pt
     ...
-  mri_volumes/
+  mri_data/
     case_001.h5
     case_002.h5
     ...
@@ -46,8 +46,8 @@ LABEL_DIR/
 CUDA_VISIBLE_DEVICES=<GPU_ID> python train_iada.py \
   --mode internal_5fold \
   --internal_csv <LABEL_DIR>/HER2_internal.csv \
-  --wsi_root <DATA_ROOT_DIR>/wsi_features \
-  --mri_root <DATA_ROOT_DIR>/mri_volumes \
+  --wsi_root <DATA_ROOT_DIR>/wsi_data \
+  --mri_root <DATA_ROOT_DIR>/mri_data \
   --output_dir <OUTPUT_DIR>/her2_internal5
 ```
 
@@ -58,8 +58,8 @@ CUDA_VISIBLE_DEVICES=<GPU_ID> python train_iada.py \
   --mode external \
   --internal_csv <LABEL_DIR>/HER2_internal.csv \
   --external_csv <LABEL_DIR>/HER2_external.csv \
-  --wsi_root <DATA_ROOT_DIR>/wsi_features \
-  --mri_root <DATA_ROOT_DIR>/mri_volumes \
+  --wsi_root <DATA_ROOT_DIR>/wsi_data \
+  --mri_root <DATA_ROOT_DIR>/mri_data \
   --output_dir <OUTPUT_DIR>/her2_external
 ```
 
